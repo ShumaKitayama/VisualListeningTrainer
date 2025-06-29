@@ -56,6 +56,43 @@ toeic/
 └── README.md
 ```
 
+## 開発環境構築
+
+このプロジェクトは VSCode の Dev Containers を使用して開発環境を構築することを推奨しています。  
+ローカル環境を汚すことなく、統一された開発環境で作業を開始できます。
+
+### 前提条件
+
+以下がインストールされていることを確認してください：
+
+- **Visual Studio Code**
+- **Docker Desktop**
+- **Dev Containers 拡張機能** (VS Code)
+
+### 開発環境セットアップ手順
+
+1. **Spring Boot Extension Pack をインストール**
+   - VS Code の拡張機能マーケットプレース (Ctrl+Shift+X) で「Spring Boot Extension Pack」を検索
+   - インストール後、歯車マークから「devcontainer.json に追加する」を選択
+
+2. **Dev Container 設定ファイルの作成**
+   - 「ファイルを追加」→「ワークスペースに構成を追加する」を選択
+   - 「すべての定義を表示...」→「Java devcontainers」を選択
+   - Java バージョン：「21-bullseye」を選択
+   - 「Install Gradle」にチェックを入れる
+   - 追加機能は選択せずに「OK」
+
+3. **Dev Container で開く**
+   - 左下の緑色のアイコンをクリック
+   - 「コンテナーで再度開く」(Reopen in Container) を選択
+   - 初回は Docker イメージのビルドに時間がかかります
+
+4. **環境構築完了の確認**
+   - エクスプローラに「開発コンテナー：JAVA」と表示される
+   - Ctrl+Shift+P でコマンドパレットを開き、「spring init」で Spring Initializr が使用可能
+
+> **参考記事**: [VSCodeのDevContainersでSpringBoot環境を構築](https://zenn.dev/sleepwalk/articles/7518fbd39043c9)
+
 ## セットアップ
 
 ### 前提条件
