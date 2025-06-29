@@ -1,0 +1,154 @@
+TOEIC Part 1 対策アプリ — 仕様書
+
+1. 目的
+
+TOEIC Listening Part 1（写真描写問題）の反復練習を行い、正答率の向上を支援する。事前に用意した写真と 4 択英文（約 20 語・正解 1／誤答 3）をランダムに出題し、ユーザーごとの成績を蓄積・可視化する。
+
+2. スコープ
+	•	プラットフォーム: Web（PC / モバイル共通）
+	•	対象ユーザー: TOEIC 400–800 を目指す学習者
+	•	開発体制: 個人〜3 名
+
+3. 用語定義
+
+用語	定義
+問題	写真 1 枚と選択肢 4 文で構成されるユニット
+セッション	学習開始から終了までの連続した回答 1 回
+正答率	回答総数に対する正解数の割合（%）
+
+4. システム構成
+
+[HTML / CSS / JavaScript]
+        │ REST / JSON
+        ▼
+[Spring Boot 3 API] ──── [PostgreSQL 16]
+        │
+        └─ ローカルファイルシステム（assets/images）
+
+	•	フロントエンド: 素の HTML5 / CSS3 / ES2021 JavaScript（ビルドツールなし）
+	•	バックエンド: Java 21 + Spring Boot 3（Spring MVC, Spring Security, Spring Data JPA）
+	•	DB: PostgreSQL 16（Railway・Fly.io など）
+	•	画像ストレージ: サーバー内 assets/images （classpath:/static/ として公開）
+
+5. 機能要件
+
+5.1 認証
+	•	E-mail / Password サインアップ・ログイン
+	•	JWT によるトークン認証
+
+5.2 問題データ管理（静的）
+
+項目	内容
+配置	questions/ ディレクトリ（Git 管理）
+メタ	questions.json — { id, image, choices[4], correct_index }
+画像	images/ — JPG/PNG (640×480)
+配備	CI/CD で assets/images へコピーし、読み取り専用で公開
+変更	PR ベースで追加／修正（UI での CRUD は提供しない）
+
+5.3 学習セッション
+	1.	出題数（デフォルト 10）をランダム抽出
+	2.	写真 + 4 択を表示
+	3.	回答後直ちに正誤判定・任意で解説表示
+
+5.4 回答・判定
+	•	ユーザーの選択肢を results テーブルへ記録
+	•	正解判定: choice_id == correct_id
+
+5.5 成績管理
+	•	セッション単位のスコア（正解数 / 問題数）
+	•	統計: 全期間平均・直近 7 日平均など
+
+5.6 ダッシュボード
+	•	円グラフ: 正解 vs 不正解
+	•	折れ線: 日別平均正答率
+
+5.7 ユーザー設定
+	•	出題数
+	•	解説表示タイミング
+	•	音声読み上げ ON/OFF
+
+6. 非機能要件
+
+項目	要件
+レスポンス	API p95 ≦ 200 ms
+同時接続	1 000 ユーザー
+可搬性	macOS (Apple Silicon) / Linux, Docker 化
+開発環境　　Dev Container
+セキュリティ	OWASP Top 10 準拠・HTTPS
+アクセシビリティ	WCAG 2.1 AA
+i18n	UI 英語 / 日本語切替
+
+7. 画面フロー
+	1.	ログイン  →  2. ダッシュボード  →  3. 学習設定  →  4. 出題  →  5. 結果  →  2 へ戻る
+
+8. UI 要件
+
+8.1 出題画面
+	•	写真: 4:3, max-width 640 px
+	•	選択肢ボタン ×4
+	•	ステータスバー: 問題番号 / 総数・経過時間
+
+8.2 結果画面
+	•	スコア（正答数・正答率）
+	•	各問題の写真サムネ・選択肢・正解
+
+9. データモデル（ER 概要）
+
+users(id, email, password_hash, created_at)
+questions(id, image_path, explanation, created_at)
+choices(id, question_id, sentence, is_correct)
+results(id, user_id, session_id, question_id, choice_id, is_correct, answered_at)
+sessions(id, user_id, started_at, finished_at)
+
+インデックス: choices(question_id), results(user_id, answered_at) など
+
+10. API サマリ
+
+Method	Path	説明
+POST	/auth/signup	新規登録
+POST	/auth/login	ログイン
+GET	/questions/random?limit=n	ランダム出題
+POST	/results	回答送信
+GET	/stats/overview	成績サマリ
+POST	/admin/questions	問題追加（管理者）
+
+認可: Authorization: Bearer <JWT>
+
+11. ディレクトリ構成（抜粋）
+
+frontend/
+  index.html
+  css/
+    style.css
+  js/
+    app.js            # ルーティング & 状態管理
+    ui/
+      quizView.js
+      resultView.js
+    api/
+      apiClient.js
+assets/images/        # 写真ファイル
+backend/
+  src/main/java/com/example/part1/
+  src/main/resources/
+    application.yml
+questions/
+  questions.json
+  images/
+    001.jpg
+    002.jpg
+
+12. エラーハンドリング
+	•	400 Bad Request: 入力バリデーション失敗
+	•	403 Forbidden: 認可エラー
+	•	500 Internal Server Error: サーバ例外（詳細ログ出力）
+
+13. テスト
+	•	ユニット: JUnit 5 + Mockito（サービス／リポジトリ）
+	•	E2E: Playwright（ブラウザ自動テスト）
+	•	CI: GitHub Actions + Docker
+	•	Lint: Checkstyle / SpotBugs / ESLint
+
+⸻
+
+更新日: 2025-06-28

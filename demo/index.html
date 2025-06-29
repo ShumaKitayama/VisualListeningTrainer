@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TOEIC Part1 クイズ - 5問ランダム</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 30px; }
+    img { width: 300px; border-radius: 10px; }
+    .choice { margin: 10px; padding: 10px 20px; border: 1px solid #aaa; border-radius: 5px; cursor: pointer; display: inline-block; }
+    .choice:hover { background-color: #f0f0f0; }
+    #result, #score { font-size: 1.2em; margin-top: 20px; }
+    #speakBtn, #nextBtn { margin: 20px; padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>TOEIC Part1 クイズ</h1>
+  <img id="quizImage" src="" alt="Quiz Image" />
+  <div id="questionNumber" style="margin-top: 10px; font-weight: bold;"></div>
+  <div id="choices"></div>
+  <div id="result"></div>
+  <button id="speakBtn">▶ 音声を通しで再生</button>
+  <button id="nextBtn">▶ 次の問題へ</button>
+  <div id="allTexts" style="margin-top: 10px;"></div>
+  <div id="score"></div>
+
+  <script src="questions.js"></script>
+  <script>
+    const selectedQuestions = [...questions]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 10); //問題数変化
+    let currentIndex = 0;
+    let correctCount = 0;
+
+    const quizImage = document.getElementById("quizImage");
+    const choicesDiv = document.getElementById("choices");
+    const resultDiv = document.getElementById("result");
+    const scoreDiv = document.getElementById("score");
+    const allTextDiv = document.getElementById("allTexts");
+
+    function showQuestion(index) {
+      const q = selectedQuestions[index];
+      document.getElementById("questionNumber").textContent = `【${index + 1}問目】`;
+      resultDiv.textContent = "";
+      choicesDiv.innerHTML = "";
+      allTextDiv.innerHTML = "";
+      quizImage.src = q.image;
+
+      const answers = [q.correct, ...q.distractors]
+        .map(text => ({ text, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map((obj, idx) => ({
+          label: String.fromCharCode(65 + idx),
+          text: obj.text
+        }));
+
+      const correctLabel = answers.find(a => a.text === q.correct).label;
+
+      answers.forEach(choice => {
+        const div = document.createElement("div");
+        div.className = "choice";
+        div.textContent = choice.label;
+        div.onclick = () => {
+          if (choice.label === correctLabel) {
+            resultDiv.textContent = "✅ 正解です！";
+            resultDiv.style.color = "green";
+            correctCount++;
+          } else {
+            resultDiv.textContent = `❌ 不正解。正解は: ${correctLabel}`;
+            resultDiv.style.color = "red";
+          }
+          document.querySelectorAll(".choice").forEach(c => c.onclick = null);
+          showAllTexts(answers); // 5問目も含めて全文表示
+        };
+        choicesDiv.appendChild(div);
+      });
+
+      document.getElementById("speakBtn").onclick = () => {
+        speechSynthesis.cancel();
+        let idx = 0;
+        const speakNext = () => {
+          if (idx >= answers.length) return;
+          const utter = new SpeechSynthesisUtterance(`${answers[idx].label}. ${answers[idx].text}`);
+          utter.lang = "en-US";
+          utter.rate = 1.2;
+          utter.onend = () => {
+            idx++;
+            speakNext();
+          };
+          speechSynthesis.speak(utter);
+        };
+        speakNext();
+      };
+
+      function showAllTexts(answers) {
+        allTextDiv.innerHTML = answers.map(a => `${a.label}. ${a.text}`).join("<br>");
+      }
+    }
+
+    document.getElementById("nextBtn").onclick = () => {
+      speechSynthesis.cancel();
+      currentIndex++;
+      if (currentIndex < selectedQuestions.length) {
+        showQuestion(currentIndex);
+      } else {
+        quizImage.style.display = "none";
+        choicesDiv.innerHTML = "";
+        resultDiv.textContent = "";
+        allTextDiv.innerHTML = "";  // 全文非表示
+        document.getElementById("speakBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "none";
+        scoreDiv.textContent = `🎉 あなたの正解数: ${correctCount} / ${selectedQuestions.length}`;
+        scoreDiv.style.fontWeight = "bold";
+        scoreDiv.style.color = "blue";
+      }
+    };
+
+    showQuestion(currentIndex);
+  </script>
+</body>
+</html>

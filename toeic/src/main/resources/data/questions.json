@@ -1,0 +1,407 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "image": "001.jpg",
+      "explanation": "会議室で男性がプレゼンテーションを行っている様子です。男性は立って話しており、参加者は座って聞いています。",
+      "choices": [
+        {
+          "id": 1,
+          "sentence": "The man is giving a presentation.",
+          "is_correct": true,
+          "order": 0
+        },
+        {
+          "id": 2,
+          "sentence": "The man is eating lunch.",
+          "is_correct": false,
+          "order": 1
+        },
+        {
+          "id": 3,
+          "sentence": "The man is reading a book.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 4,
+          "sentence": "The man is sleeping.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "image": "002.jpg",
+      "explanation": "女性が花に水をやっている庭の風景です。彼女は水やり用のじょうろを使っています。",
+      "choices": [
+        {
+          "id": 5,
+          "sentence": "The woman is cooking dinner.",
+          "is_correct": false,
+          "order": 0
+        },
+        {
+          "id": 6,
+          "sentence": "The woman is watering the flowers.",
+          "is_correct": true,
+          "order": 1
+        },
+        {
+          "id": 7,
+          "sentence": "The woman is washing clothes.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 8,
+          "sentence": "The woman is driving a car.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "image": "003.jpg",
+      "explanation": "建設現場で作業員がヘルメットをかぶって建物の建設作業を行っています。",
+      "choices": [
+        {
+          "id": 9,
+          "sentence": "Workers are building a house.",
+          "is_correct": true,
+          "order": 0
+        },
+        {
+          "id": 10,
+          "sentence": "Workers are playing football.",
+          "is_correct": false,
+          "order": 1
+        },
+        {
+          "id": 11,
+          "sentence": "Workers are shopping for groceries.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 12,
+          "sentence": "Workers are swimming in a pool.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "image": "004.jpg",
+      "explanation": "オフィスで女性がコンピューターを使って作業をしている場面です。デスクの上には書類も見えます。",
+      "choices": [
+        {
+          "id": 13,
+          "sentence": "The woman is dancing.",
+          "is_correct": false,
+          "order": 0
+        },
+        {
+          "id": 14,
+          "sentence": "The woman is working at a computer.",
+          "is_correct": true,
+          "order": 1
+        },
+        {
+          "id": 15,
+          "sentence": "The woman is painting a picture.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 16,
+          "sentence": "The woman is playing tennis.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "image": "005.png",
+      "explanation": "カフェで男性がコーヒーを飲みながらラップトップで作業をしています。",
+      "choices": [
+        {
+          "id": 17,
+          "sentence": "The man is riding a bicycle.",
+          "is_correct": false,
+          "order": 0
+        },
+        {
+          "id": 18,
+          "sentence": "The man is working on his laptop.",
+          "is_correct": true,
+          "order": 1
+        },
+        {
+          "id": 19,
+          "sentence": "The man is watching TV.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 20,
+          "sentence": "The man is cooking breakfast.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "image": "airport.jpeg",
+      "explanation": "空港の通路が空っぽになっている様子です。旅行者や乗客の姿は見えません。",
+      "choices": [
+        {
+          "id": 21,
+          "sentence": "An airport walkway is empty.",
+          "is_correct": true,
+          "order": 0
+        },
+        {
+          "id": 22,
+          "sentence": "A plane is taking off.",
+          "is_correct": false,
+          "order": 1
+        },
+        {
+          "id": 23,
+          "sentence": "People are waiting in line.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 24,
+          "sentence": "A pilot is talking to passengers.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "image": "砂漠を歩く人.jpg",
+      "explanation": "砂漠の中を一人で歩いている人の姿が映っています。",
+      "choices": [
+        {
+          "id": 25,
+          "sentence": "A person is walking through a desert.",
+          "is_correct": true,
+          "order": 0
+        },
+        {
+          "id": 26,
+          "sentence": "A person is walking in a forest.",
+          "is_correct": false,
+          "order": 1
+        },
+        {
+          "id": 27,
+          "sentence": "A person is climbing a mountain.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 28,
+          "sentence": "A person is swimming in the sea.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "image": "女性コーヒー置く.jpg",
+      "explanation": "女性がテーブルの上にコーヒーカップを置いている場面です。",
+      "choices": [
+        {
+          "id": 29,
+          "sentence": "A woman is placing a cup on a table.",
+          "is_correct": true,
+          "order": 0
+        },
+        {
+          "id": 30,
+          "sentence": "A woman is picking up a cup.",
+          "is_correct": false,
+          "order": 1
+        },
+        {
+          "id": 31,
+          "sentence": "A woman is writing a note.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 32,
+          "sentence": "A woman is reading a newspaper.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "image": "森の中で笑う女性.jpg",
+      "explanation": "森の中で女性が笑っている自然な表情が写っています。",
+      "choices": [
+        {
+          "id": 33,
+          "sentence": "A woman is laughing in a forest.",
+          "is_correct": true,
+          "order": 0
+        },
+        {
+          "id": 34,
+          "sentence": "A woman is crying in a room.",
+          "is_correct": false,
+          "order": 1
+        },
+        {
+          "id": 35,
+          "sentence": "A woman is eating at a table.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 36,
+          "sentence": "A woman is jogging on a path.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "image": "バイクにまたがる女性たち.jpg",
+      "explanation": "二人の女性がバイクに乗っている様子が写っています。",
+      "choices": [
+        {
+          "id": 37,
+          "sentence": "Two women are sitting on a motorbike.",
+          "is_correct": true,
+          "order": 0
+        },
+        {
+          "id": 38,
+          "sentence": "Two women are walking in a park.",
+          "is_correct": false,
+          "order": 1
+        },
+        {
+          "id": 39,
+          "sentence": "Two women are sitting on a bench.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 40,
+          "sentence": "Two women are riding bicycles.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "image": "屋根でスマホを見る男性.jpg",
+      "explanation": "屋上で男性がスマートフォンを見ている場面です。",
+      "choices": [
+        {
+          "id": 41,
+          "sentence": "A man is looking at his phone on a rooftop.",
+          "is_correct": true,
+          "order": 0
+        },
+        {
+          "id": 42,
+          "sentence": "A man is calling from a balcony.",
+          "is_correct": false,
+          "order": 1
+        },
+        {
+          "id": 43,
+          "sentence": "A man is fixing a roof.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 44,
+          "sentence": "A man is painting a wall.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "image": "湖に飛び込む男性.jpg",
+      "explanation": "男性が湖に飛び込んでいる瞬間が写されています。",
+      "choices": [
+        {
+          "id": 45,
+          "sentence": "A man is diving into a lake.",
+          "is_correct": true,
+          "order": 0
+        },
+        {
+          "id": 46,
+          "sentence": "A man is fishing by the lake.",
+          "is_correct": false,
+          "order": 1
+        },
+        {
+          "id": 47,
+          "sentence": "A man is swimming in a pool.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 48,
+          "sentence": "A man is climbing a tree.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "image": "向日葵に日が差す.jpg",
+      "explanation": "向日葵の花に太陽の光が差し込んでいる美しい風景です。",
+      "choices": [
+        {
+          "id": 49,
+          "sentence": "Sunlight is shining on sunflowers.",
+          "is_correct": true,
+          "order": 0
+        },
+        {
+          "id": 50,
+          "sentence": "A cat is lying in the sun.",
+          "is_correct": false,
+          "order": 1
+        },
+        {
+          "id": 51,
+          "sentence": "The sun is setting behind the mountains.",
+          "is_correct": false,
+          "order": 2
+        },
+        {
+          "id": 52,
+          "sentence": "Sunflowers are being watered.",
+          "is_correct": false,
+          "order": 3
+        }
+      ]
+    }
+  ]
+} 
